@@ -2,7 +2,7 @@ const data = [
   {
     id: 1,
     name: 'Symptoms-based Diagnosis',
-    price: ' you will have to input your  symptoms into this feature  ',
+    price: 'You will have to input your  symptoms into this feature',
   },
   {
     id: 2,
@@ -12,7 +12,7 @@ const data = [
   {
     id: 3,
     name: 'MRI Scan ',
-    price: ' you will have the option to upload MRI scans through this feature ',
+    price: 'You will have the option to upload MRI scans through this feature',
   },
   {
     id: 4,

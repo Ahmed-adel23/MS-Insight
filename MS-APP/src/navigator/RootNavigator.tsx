@@ -1,14 +1,19 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { LogBox } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import BottomTabNavigator from './BottomTabNavigator';
-import OnboardingScreen from '../../OnboardingScreen';
+import OnboardingScreen from '../screen/OnboardingScreen';
 import Signup from '../components/Signup';
 import Login from '../components/Login';
 import Model1 from '../components/Model1';
 import Model2 from '../components/Model2';
 import Model3 from '../components/Model3';
 import Model4 from '../components/Model4';
+
+LogBox.ignoreLogs([
+  '@firebase/auth: Auth (10.7.1): You are initializing Firebase Auth for React Native without providing AsyncStorage',
+]);
+LogBox.ignoreAllLogs();
 
 const Stack = createStackNavigator();
 export type RootStackParamList ={
@@ -20,11 +25,11 @@ const RootNavigator = () => {
   const stack = createStackNavigator<RootStackParamList>();
   return (
    <Stack.Navigator 
-    initialRouteName="Splash"
+    initialRouteName="HomePage"
     screenOptions={{
       headerMode: 'screen',
       headerTintColor: 'white',
-      headerStyle: { backgroundColor: '#001B79' },
+      headerStyle: { backgroundColor: '#019874'},
     }}   
   >
     <Stack.Screen 

@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BackHandler } from 'react-native';
 import AppHeader from '../components/AppHeader';
-import HomeImg from '../assets/PortfolioUpdate-amico.svg';
+import HomeImg from '../assets/undraw_doctors_hwty (2) 1.svg';
 
 const HomeScreen = () => {
   const navigation = useNavigation(); 
@@ -61,14 +61,13 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   Textpargh: {
-    paddingHorizontal: 25,
-    fontWeight: 'bold',
+    paddingHorizontal: 20,
     textTransform: 'capitalize',
     fontSize: 18,
     paddingBottom: 10,
   },
   button: {
-    backgroundColor: '#001B79',
+    backgroundColor: '#019874',
     padding: 10,
     paddingHorizontal: 25,
     margin: 15,

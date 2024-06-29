@@ -5,10 +5,10 @@ import Animated, {
   useAnimatedScrollHandler,
   useAnimatedRef,
 } from 'react-native-reanimated';
-import data, {OnboardingData} from './src/data/data';
-import Pagination from './src/components/Pagination';
-import CustomButton from './src/components/CustomButton';
-import RenderItem from './src/components/RenderItem';
+import data, {OnboardingData} from '../data/data';
+import Pagination from '../components/Pagination';
+import CustomButton from '../components/CustomButton';
+import RenderItem from '../components/RenderItem';
 
 const OnboardingScreen = () => {
   const flatListRef = useAnimatedRef<FlatList<OnboardingData>>();

@@ -1,11 +1,12 @@
 import React, { useState  , useRef , useEffect } from "react";
-import { StyleSheet, Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert } from "react-native";
+import { StyleSheet, Text, View,  TextInput,  SafeAreaView, TouchableOpacity, StatusBar } from "react-native";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../config/firebase";
 import Toast from './Toast';
 import { BackHandler } from "react-native";
-
-const backImage = require("../../assets/3d-render-medical-background-with-brain-being-attacked-by-virus-cells.jpg");
+import IMG from '../assets/Vector.svg';
+import IMGL from '../assets/undraw_my_app_grf2 (1) 1.svg';
+import IMGhead from '../assets/Figmania - Playground (Community) (Copy) (1).svg';
 
 export default function Login({ navigation }) {
   const toastRef = useRef();
@@ -57,10 +58,13 @@ export default function Login({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Image source={backImage} style={styles.backImage} />
+      <IMG  style={styles.backImage} />
+      <Text style={styles.head}> MS Detector </Text>
       <View style={styles.whiteSheet} />
       <SafeAreaView style={styles.form}>
-        <Text style={styles.title}>Log In</Text>
+        <Text style={styles.title}>Welcome Back!</Text>
+        <IMGL />
+        <View>
         <TextInput
           style={styles.input}
           placeholder="Enter email"
@@ -81,14 +85,21 @@ export default function Login({ navigation }) {
           value={password}
           onChangeText={(text) => setPassword(text)}
         />
+          <TouchableOpacity onPress={() => navigation.navigate("")}>
+            <Text style={{ color: 'red', fontWeight: '300', fontSize: 12 , padding: 15 , marginTop: -38, textAlign: 'right' }}>Do You Forget Password?</Text>
+          </TouchableOpacity>
+
+        </View>
+        <View>
         <TouchableOpacity style={styles.button} onPress={onHandleLogin}>
           <Text style={{ fontWeight: 'bold', color: '#fff', fontSize: 18 }}> Log In</Text>
         </TouchableOpacity>
         <View style={{ marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center' }}>
-          <Text style={{ color: 'gray', fontWeight: '600', fontSize: 14 }}>Don't have an account? </Text>
+          <Text style={{ color: '#000', fontWeight: '400', fontSize: 12 }}>Don't have an account? </Text>
           <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
-            <Text style={{ color: '#001B79', fontWeight: '600', fontSize: 14 }}> Sign Up</Text>
+            <Text style={{ color: 'red', fontWeight: '300', fontSize: 12 }}> Sign Up</Text>
           </TouchableOpacity>
+        </View>
         </View>
         <Toast ref={toastRef} />
       </SafeAreaView>
@@ -99,49 +110,68 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff"
   },
   title: {
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: 'bold',
-    color: "#001B79",
+    color: "#019874",
     alignSelf: "center",
+    paddingBottom: 24,
+  },
+  Imagehead: {
+    position: 'absolute',
+    top: 0 ,
+    right: 0 ,
+    zIndex: 5 , 
+    width: 30,
+    height: 30
+  },
+  head: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: "#019874",
+    marginTop: 10,
+    marginLeft: 60,
     paddingBottom: 24,
   },
   input: {
     backgroundColor: "#F6F7FB",
     height: 58,
-    marginBottom: 20,
+    marginBottom: 30,
     fontSize: 16,
-    borderRadius: 10,
-    padding: 12,
+    borderRadius: 20,
+    padding: 15,
   },
   backImage: {
-    width: "100%",
-    height: 340,
-    position: "absolute",
-    top: 0,
-    resizeMode: 'cover',
+    position: 'absolute',
+    top: 10 ,
+    left: 5,
+    width: 50,
+    height: 50,
+    borderRadius: 50,
   },
   whiteSheet: {
     width: '100%',
-    height: '75%',
+    height: '90%',
     position: "absolute",
     bottom: 0,
-    backgroundColor: '#fff',
+    backgroundColor: '#C4C4C48A',
     borderTopLeftRadius: 60,
+    borderTopRightRadius: 60,
   },
   form: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    marginTop: 35,
     marginHorizontal: 30,
   },
   button: {
-    backgroundColor: '#001B79',
+    backgroundColor: '#019874',
     height: 58,
-    borderRadius: 10,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
+    marginTop: 20,
   },
 });

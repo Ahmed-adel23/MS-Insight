@@ -11,7 +11,6 @@ interface Props {
 }
 
 const BottomTabIcon = ({route, isFocused}: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
   const renderIcon = (route: string, isFocused: boolean) => {
     let height: number = 34;
     let width: number = 34;
@@ -22,7 +21,7 @@ const BottomTabIcon = ({route, isFocused}: Props) => {
           <HomeIcon
             width={width}
             height={height}
-            fill={isFocused ? '#0067FF' : '#ffffff'}
+            fill={isFocused ? '#019874' : '#ffffff'}
           />
         );
       case 'Search':
@@ -30,7 +29,7 @@ const BottomTabIcon = ({route, isFocused}: Props) => {
           <SearchIcon
             width={width}
             height={height}
-            fill={isFocused ? '#0067FF' : '#ffffff'}
+            fill={isFocused ? '#019874' : '#ffffff'}
           />
         );
       case 'Setting':
@@ -38,7 +37,7 @@ const BottomTabIcon = ({route, isFocused}: Props) => {
           <SettingIcon
             width={width}
             height={height}
-            fill={isFocused ? '#0067FF' : '#ffffff'}
+            fill={isFocused ? '#019874' : '#ffffff'}
           />
         );
       case 'Profile':
@@ -46,7 +45,7 @@ const BottomTabIcon = ({route, isFocused}: Props) => {
           <ProfileIcon
             width={width}
             height={height}
-            fill={isFocused ? '#0067FF' : '#ffffff'}
+            fill={isFocused ? '#019874' : '#ffffff'}
           />
         );
       default:

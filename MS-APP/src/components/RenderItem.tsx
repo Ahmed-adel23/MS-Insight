@@ -92,14 +92,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginBottom: 120,
+    marginBottom: 180,
   },
   itemText: {
     textAlign: 'center',
-    fontSize: 44,
+    fontSize: 40,
     fontWeight: 'bold',
     marginBottom: 10,
-    marginHorizontal: 20,
   },
   circleContainer: {
     ...StyleSheet.absoluteFillObject,

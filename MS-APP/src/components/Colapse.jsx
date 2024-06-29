@@ -1,4 +1,3 @@
-// Accordion.js
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
@@ -104,10 +103,10 @@ const Accordion = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: 20,
   },
   sectionHeader: {
-    backgroundColor: '#001B79',
+    backgroundColor: '#019874',
     padding: 16,
     marginBottom: 8,
     borderRadius:10

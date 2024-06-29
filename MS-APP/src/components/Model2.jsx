@@ -5,20 +5,22 @@ import {
   TouchableOpacity,
   StyleSheet,
   TouchableWithoutFeedback,
-  Modal,
-  Dimensions,
+  Modal
 } from "react-native";
 import * as DocumentPicker from "expo-document-picker";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import BottomSheet, { BottomSheetRefProps } from "./BottomSheet";
-import Img from "../assets/download.svg";
-import Colapse from "./Colapse"
+import BottomSheet from "./BottomSheet";
+import Img from "../assets/upload.svg";
+import axios from 'axios';
+import Colapse from '../components/Colapse'
+
 function Upload1() {
   const [file, setFile] = useState(null);
-  const [prediction, setPrediction] = useState("You are infected with MS");
+  const [prediction, setPrediction] = useState(null);
   const [error, setError] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const reff = useRef<BottomSheetRefProps>(null);
+
+  const reff = useRef(null);
 
   const onPress = useCallback(() => {
     setModalVisible(false);
@@ -34,11 +36,9 @@ function Upload1() {
     try {
       const result = await DocumentPicker.getDocumentAsync();
 
-      if (result.type === "success" && result.uri) {
+      if (result) {
         setFile(result);
         console.log(result);
-      } else {
-        console.warn("No file selected for upload");
       }
     } catch (error) {
       console.error("Error picking document:", error.message);
@@ -50,24 +50,21 @@ function Upload1() {
     if (file) {
       const formData = new FormData();
       formData.append("file", {
-        uri: file.uri,
-        type: "text/csv",
-        name: file.name,
+             uri: file.assets[0].uri,
+             type: "text/comma-separated-values",
+             name: file.assets[0].name,
       });
 
       try {
-        const response = await fetch("http://192.168.57.246:5000/MSPrediction", {
-          method: "POST",
-          body: formData,
+        const response = await axios.post('http://192.168.1.5:5000/MSPrediction2', formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
+            'Content-Type': 'multipart/form-data',
           },
         });
 
-        if (response.ok) {
-          const responseData = await response.json();
-          console.log(responseData);
-          setPrediction(responseData.data);
+        if (response.status === 200) {
+          console.log(response.data);
+          setPrediction(response.data.prediction_results);
           setModalVisible(true);
         } else {
           console.error("Error uploading file:", response.statusText);
@@ -81,6 +78,7 @@ function Upload1() {
       console.error("No file selected for upload.");
       setError("No file selected for upload.");
     }
+//     setFile(null)
   };
 
   const PredictionModal = () => (
@@ -128,14 +126,14 @@ function Upload1() {
 
   return (
     <SafeAreaProvider>
-      <View style={{ flex: 1, justifyContent: "center", marginTop: -50 }}>
+      <View style={{ flex: 1, justifyContent: "center", marginTop: -50 , backgroundColor: '#cef5eb' }}>
         <Text style={{ textAlign: "center", fontSize: 18, margin: 10 }}>
           Upload Your file for MS Testing
         </Text>
         <View
           style={{
             height: 200,
-            borderColor: "#001B79",
+            borderColor: "#019874",
             borderWidth: 2,
             borderStyle: "dashed",
             marginHorizontal: 40,
@@ -145,16 +143,16 @@ function Upload1() {
             style={{ alignItems: "center" }}
             onPress={handleImageUpload}
           >
-            <Img style={{ width: 100, height: 100, marginTop: 20 }} />
+            <Img style={{ marginTop: 40 }} />
             <Text style={{ marginTop: 10, fontSize: 16 }}>
               Drag & drop files{" "}
-              <Text style={{ color: "blue" }} onPress={handleImageUpload}>
+              <Text style={{ color: "#019874" }} onPress={handleImageUpload}>
                 Browse
               </Text>
             </Text>
           </TouchableOpacity>
         </View>
-        <Text style={{ color: "white", opacity: 0.5, textAlign: "center" }}>
+        <Text style={{ color: "black", opacity: 0.7, textAlign: "center" ,marginTop: -35 }}>
           Supported formats: CSV
         </Text>
         <TouchableWithoutFeedback onPress={handleSubmit}>
@@ -164,14 +162,11 @@ function Upload1() {
         </TouchableWithoutFeedback>
         <PredictionModal />
         <BottomSheet ref={reff}>
-          <View style={{ flex: 1, backgroundColor: "whitesmoke" }}>
-            {/* <View style={{flex:1 ,top: 50 , position: 'absolute' ,  backgroundColor: "yellow"}}> */}
-            {/* <Text style={{color: 'red' , textAlign: 'center' , fontSize:22 , marginTop:10 , fontWeight: 'bold' }}>Recommendation</Text>
-              <View style={{ flex:1 , flexDirection: 'row', height: 150 , padding:10 , marginTop: 10 , backgroundColor: 'blue', borderRadius: 20 , marginHorizontal: 10 }}>
-                <Text style={{width: 80 , height:80 , borderRadius: 50 , backgroundColor: 'red'}}>first</Text>
-                <Text style={{width: 250 , height:160 , borderRadius: 50 , backgroundColor: 'yellow'}}>first</Text>
-              </View> */}
+            <View style={{ flex: 1, backgroundColor: "whitesmoke" }}>
+            <View style={{flex:1 ,top: 20 , position: 'absolute' }}>
+            <Text style={{color: 'red' , textAlign: 'center' , fontSize:22 , marginTop:10 , fontWeight: 'bold' }}>Recommendation</Text>
               <Colapse/>
+          </View>
           </View>
         </BottomSheet>
       </View>
@@ -179,15 +174,18 @@ function Upload1() {
   );
 }
 
+export default Upload1;
+
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: "#001B79",
+    backgroundColor: "#019874",
     padding: 10,
     marginHorizontal: 30,
     borderRadius: 10,
+    marginTop: 40
   },
   button1: {
-    backgroundColor: "#001B79",
+    backgroundColor: "#019874",
     padding: 8,
     marginHorizontal: 15,
     borderRadius: 10,
@@ -204,5 +202,3 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
-export default Upload1;

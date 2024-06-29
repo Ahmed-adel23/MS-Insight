@@ -2,17 +2,14 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   FlatList,
-  Image,
   TouchableWithoutFeedback,
-  Dimensions,
-  TouchableOpacity
+  Dimensions
 } from 'react-native';
 import React from 'react';
-import data from './src/data';
+import data from '../data/datatest';
 import { MotiView } from 'moti';
-import AppHeader from './src/components/AppHeader';
+import AppHeader from '../components/AppHeader';
 import Feather from 'react-native-vector-icons/MaterialCommunityIcons';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 const FlatlistRevealAnimationScreen = ({ navigation }) => {
@@ -31,7 +28,6 @@ const FlatlistRevealAnimationScreen = ({ navigation }) => {
         <Text style={styles.priceText}>{item.price}</Text>
         <TouchableWithoutFeedback
           onPress={() => {
-            console.log('BUY NOW!', index);
             if(index == 0)
             navigation.navigate("MsTesting")
             if(index == 1)
@@ -82,37 +78,37 @@ const styles = StyleSheet.create({
   },
   listContainer: {
     width: Dimensions.get('window').width - 30,
-    backgroundColor: '#8D98AA',
+    backgroundColor: '#cef5eb',
     padding: 5,
     margin: 15,
     marginHorizontal: 15,
     borderRadius: 20,
   },
   imageContainer: {
-    margin: 15,
+    margin: 10,
     borderRadius: 10,
     overflow: 'hidden',
   },
   nameText: {
-    color: 'white',
-    fontWeight: 'bold',
-    marginLeft: 15,
+    color: 'gray',
+    marginLeft: 10,
     marginTop: 10,
-    fontSize: 25
+    fontSize: 18
   },
   priceText: {
-    marginHorizontal: 30,
+    marginHorizontal: 10,
+    marginLeft: 20,
     marginTop: 10,
   },
   button: {
-    backgroundColor: 'whitesmoke',
+    backgroundColor: '#019874',
     padding: 10,
     margin: 15,
     marginHorizontal: 30,
-    borderRadius: 10,
+    borderRadius: 20,
   },
   buttonText: {
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
     fontSize:18,
     textTransform:'capitalize'
@@ -122,9 +118,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   nameIcon: {
-    color: 'white',
+    color: 'gray',
     fontWeight: 'bold',
-    marginLeft: 15,
+    marginLeft: 10,
     marginTop: 15,
     fontSize: 25
 

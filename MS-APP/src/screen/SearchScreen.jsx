@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import AppHeader from '../components/AppHeader';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';

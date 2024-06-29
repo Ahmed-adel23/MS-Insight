@@ -1,12 +1,11 @@
 import {
-  FlatList,
   StyleSheet,
   TouchableWithoutFeedback,
   useWindowDimensions,
 } from 'react-native';
 import React from 'react';
 import Animated, {
-  useAnimatedRef, 
+  useAnimatedRef,
   SharedValue,
   interpolateColor,
   useAnimatedStyle,
@@ -14,14 +13,14 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
-import { OnboardingData } from '../data/data';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigator/RootNavigator';
+import { auth } from '../../config/firebase'; // Import Firebase authentication
 
 type Props = {
   dataLength: number;
   flatListIndex: SharedValue<number>;
-  flatListRef: ReturnType<typeof useAnimatedRef>; // Updated type
+  flatListRef: ReturnType<typeof useAnimatedRef>;
   x: SharedValue<number>;
 };
 
@@ -70,11 +69,12 @@ const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
       ],
     };
   });
+
   const animatedColor = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       x.value,
       [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH],
-      ['#005b4f', '#1e2169', '#F15937'],
+      ['#005b4f', '#005b4f'],
     );
 
     return {
@@ -88,7 +88,11 @@ const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
         if (flatListIndex.value < dataLength - 1) {
           flatListRef.current?.scrollToIndex({ index: flatListIndex.value + 1 });
         } else {
-          navigation.navigate('LogIn');
+          if (auth.currentUser) {
+            navigation.navigate('HomePage'); 
+          } else {
+            navigation.navigate('LogIn');
+          }
         }
       }}>
       <Animated.View

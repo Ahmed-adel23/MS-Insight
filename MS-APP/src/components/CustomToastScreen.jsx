@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import {
   StyleSheet,
   Text,
@@ -7,7 +6,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import React, {useRef} from 'react';
-import Toast from './src/components/Toast';
+import Toast from './Toast';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const CustomToastScreen = () => {

@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
+    zIndex: 1000,
   },
   toastText: {
     marginLeft: 14,

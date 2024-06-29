@@ -1,8 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
 import {
   Pressable,
   StyleSheet,
-  Text,
   View,
   useWindowDimensions,
 } from 'react-native';
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
     height: 80,
     position: 'absolute',
     alignSelf: 'center',
-    backgroundColor: '#001B79',
+    backgroundColor: '#019874',
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'space-around',

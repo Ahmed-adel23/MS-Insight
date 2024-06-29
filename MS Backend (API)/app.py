@@ -11,11 +11,9 @@ CORS(app, resources={r"/MSPrediction2": {"origins": "*"}})
 CORS(app, resources={r"/MSPrediction3": {"origins": "*"}})
 CORS(app, resources={r"/MSPrediction4": {"origins": "*"}})
 api = Api(app)
-
 api.add_resource(MSPrediction , '/MSPrediction')
 api.add_resource(MSPrediction2, '/MSPrediction2')
 api.add_resource(MSPrediction3, '/MSPrediction3')        
 api.add_resource(MSPrediction4, '/MSPrediction4')
-
 if __name__ == '__main__':
     app.run(debug=True , host='0.0.0.0')

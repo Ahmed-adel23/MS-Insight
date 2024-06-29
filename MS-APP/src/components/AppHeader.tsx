@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Badge, Surface, Title } from 'react-native-paper'
 import Feather from 'react-native-vector-icons/Feather'
 const IconSize = 24;
-const AppHeader = ({  menu,  title,  onRightPress,  optionalBtnPress, optionalBadge }) => {
+const AppHeader = ({  title,  onRightPress,  optionalBtnPress, optionalBadge }) => {
 
 	const RightView = () => (
 			<View style={[styles.view, styles.rightView]}>
@@ -23,7 +23,7 @@ const AppHeader = ({  menu,  title,  onRightPress,  optionalBtnPress, optionalBa
 	) 
 
 	return (
-		<Surface style={[styles.header,  { backgroundColor: "#001B79" } ]}>
+		<Surface style={[styles.header,  { backgroundColor: "#019874" } ]}>
 			<TitleView />
 			<RightView />
 		</Surface>
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
 		marginHorizontal: 16,
 		alignItems: 'center',
 		flexDirection: 'row',
+		
 	},
 	titleView: {
 		flex: 1,
