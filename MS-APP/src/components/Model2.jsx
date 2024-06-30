@@ -13,7 +13,7 @@ import BottomSheet from "./BottomSheet";
 import Img from "../assets/upload.svg";
 import axios from 'axios';
 import Colapse from '../components/Colapse'
-
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 function Upload1() {
   const [file, setFile] = useState(null);
   const [prediction, setPrediction] = useState(null);
@@ -78,7 +78,7 @@ function Upload1() {
       console.error("No file selected for upload.");
       setError("No file selected for upload.");
     }
-//     setFile(null)
+    setFile(null)
   };
 
   const PredictionModal = () => (
@@ -139,6 +139,7 @@ function Upload1() {
             marginHorizontal: 40,
           }}
         >
+      {file?( <FontAwesome5 style={{ marginTop: 20  , textAlign: "center" }} name="file-csv" size={110} color="black" />) :
           <TouchableOpacity
             style={{ alignItems: "center" }}
             onPress={handleImageUpload}
@@ -151,10 +152,13 @@ function Upload1() {
               </Text>
             </Text>
           </TouchableOpacity>
+}
         </View>
+        {file?( <Text style={{ color: "black", opacity: 0.7, textAlign: "center" ,marginTop: -35 }}>{file.assets[0].name}</Text>) :
         <Text style={{ color: "black", opacity: 0.7, textAlign: "center" ,marginTop: -35 }}>
           Supported formats: CSV
         </Text>
+}
         <TouchableWithoutFeedback onPress={handleSubmit}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Test Now</Text>
